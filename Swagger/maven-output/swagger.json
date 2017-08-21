@@ -1,0 +1,99 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is Proof-of-concept using Swagger-UI, Swagger-Core, and the Swagger Maven Plugin",
+    "version" : "Version 1.0.0",
+    "title" : "Swagger spec for the EXAMPLE REST API"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/exampleWebAPI/example",
+  "tags" : [ {
+    "name" : "user",
+    "description" : "Operations about user"
+  } ],
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/user" : {
+      "get" : {
+        "tags" : [ "user" ],
+        "summary" : "Get list of users",
+        "description" : "",
+        "operationId" : "getUser",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "404" : {
+            "description" : "{error: Not Found}"
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "user" ],
+        "summary" : "Creates a new and user",
+        "description" : "",
+        "operationId" : "createUser",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "user object",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/UserModel"
+          }
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "{error: Not Found}"
+          }
+        }
+      }
+    },
+    "/user/{id}" : {
+      "get" : {
+        "tags" : [ "user" ],
+        "summary" : "Gets and individual user based off the ID",
+        "description" : "",
+        "operationId" : "getUser",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "id",
+          "required" : true,
+          "type" : "integer",
+          "maximum" : 1000.0,
+          "minimum" : 1.0,
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "404" : {
+            "description" : "{error: Not Found}"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "UserModel" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "username" : {
+          "type" : "string"
+        },
+        "firstName" : {
+          "type" : "string"
+        },
+        "lastName" : {
+          "type" : "string"
+        }
+      },
+      "xml" : {
+        "name" : "User"
+      }
+    }
+  }
+}
